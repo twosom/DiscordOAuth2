@@ -1,0 +1,31 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          discord:
+            client-id: ${client-id}
+            client-secret: ${client-secret}
+            redirect-uri: '{baseUrl}/login/oauth2/code/{registrationId}'
+            authorization_grant_type: authorization_code
+            scope: identify, email
+            client-name: discord
+
+        provider:
+          discord:
+            authorization_uri: https://discord.com/api/oauth2/authorize
+            token_uri: https://discord.com/api/v8/oauth2/token
+            user_info_uri: https://discord.com/api/users/@me
+            user_name_attribute: username
+
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+
+logging.level:
+  org.hibernate.SQL: debug
+
